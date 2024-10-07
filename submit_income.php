@@ -5,7 +5,7 @@ $username = "root"; // use your database username
 $password = ""; // use your database password
 $dbname = "income_db";
 
-// Create connection
+// Create connection to database
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
