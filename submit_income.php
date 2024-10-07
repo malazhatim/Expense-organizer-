@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get form data
+// Get form data i want to add 
 $income_type = $_POST['income_type'];
 $amount = $_POST['amount'];
 

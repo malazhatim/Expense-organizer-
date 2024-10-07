@@ -7,7 +7,7 @@
 <body>
     <h2>Register Your Income</h2>
     <form action="submit_income.php" method="post">
-        <label for="income_type">Income Type:</label>
+        <label for="income_type">Income Type input:</label>
         <select id="income_type" name="income_type" required>
             <option value="">Select Income Type</option>
             <option value="Salary">Salary</option>
