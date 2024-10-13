@@ -70,7 +70,6 @@ $expenseCategoriesJson = json_encode($expenseCategories);
 $expenseTotalsJson = json_encode($expenseTotals);
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
