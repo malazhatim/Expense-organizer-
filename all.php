@@ -27,13 +27,29 @@ if ($incomeResult) {
     echo "Error retrieving total income: " . $conn->error;
 }
 
-// Query for the total expenses
-$expensesQuery = "SELECT SUM(amount) AS total_expenses FROM expenses";
+// Query for the total expenses and retrieve expenses by category
+$expensesQuery = "SELECT category, SUM(amount) AS total FROM expenses GROUP BY category";
 $expensesResult = $conn->query($expensesQuery);
 
+$expenseData = [];
+$totalExpenses = 0;
+$maxExpenseCategory = '';
+$maxExpenseAmount = 0;
+
 if ($expensesResult) {
-    $expensesRow = $expensesResult->fetch_assoc();
-    $totalExpenses = $expensesRow['total_expenses'] ?? 0; // Use null coalescing to handle null values
+    while ($row = $expensesResult->fetch_assoc()) {
+        $expenseData[] = [
+            'category' => $row['category'],
+            'total' => $row['total']
+        ];
+        $totalExpenses += $row['total'];
+
+        // Find the category with the highest expense
+        if ($row['total'] > $maxExpenseAmount) {
+            $maxExpenseCategory = $row['category'];
+            $maxExpenseAmount = $row['total'];
+        }
+    }
 } else {
     echo "Error retrieving total expenses: " . $conn->error;
 }
@@ -41,38 +57,25 @@ if ($expensesResult) {
 // Calculate the balance
 $balance = $totalIncome - $totalExpenses;
 
-// Display the results within HTML structure
+// Prepare data for JavaScript
+$expenseCategories = [];
+$expenseTotals = [];
+foreach ($expenseData as $expense) {
+    $expenseCategories[] = $expense['category'];
+    $expenseTotals[] = $expense['total'];
+}
+
+// Pass PHP data to JavaScript as JSON
+$expenseCategoriesJson = json_encode($expenseCategories);
+$expenseTotalsJson = json_encode($expenseTotals);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Financial Overview</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h2 {
-            color: #333;
-        }
-        p {
-            font-size: 1.1em;
-            color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
 </head>
 <body>
     <div class="container">
@@ -80,7 +83,40 @@ $balance = $totalIncome - $totalExpenses;
         <p>Total Income: $<?php echo number_format($totalIncome, 2); ?></p>
         <p>Total Expenses: $<?php echo number_format($totalExpenses, 2); ?></p>
         <p>Balance: $<?php echo number_format($balance, 2); ?></p>
+        <p>Highest Expense: <?php echo $maxExpenseCategory; ?> ($<?php echo number_format($maxExpenseAmount, 2); ?>)</p>
+        
+        <canvas id="expenseChart"></canvas> <!-- Chart goes here -->
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Data from PHP
+        const expenseCategories = <?php echo $expenseCategoriesJson; ?>;
+        const expenseTotals = <?php echo $expenseTotalsJson; ?>;
+
+        // Create chart
+        const ctx = document.getElementById('expenseChart').getContext('2d');
+        const expenseChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: expenseCategories,
+                datasets: [{
+                    label: 'Expenses by Category',
+                    data: expenseTotals,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
 
@@ -88,5 +124,3 @@ $balance = $totalIncome - $totalExpenses;
 // Close the connection
 $conn->close();
 ?>
-
-<a href="dash.php">dash </a>
