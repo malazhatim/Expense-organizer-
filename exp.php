@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+            // Ensure the path to total_expenses.php is correct
+            include 'total_expenses.php'; // Correct this line if necessary
+            ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -77,10 +80,6 @@
 
         <h2>Total Expenses</h2>
         <div id="total-expenses">
-            <?php
-            // Ensure the path to total_expenses.php is correct
-            include 'total_expenses.php'; // Correct this line if necessary
-            ?>
         </div>
     </div>
 </body>
