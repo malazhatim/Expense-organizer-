@@ -35,7 +35,7 @@ if ($result && $result->num_rows > 0) {
     }
 }
 ?>
-
+// report of total
 <!DOCTYPE html>
 <html lang="en">
 <head>
