@@ -5,7 +5,7 @@ define('DB_NAME', 'income_db');
 define('DB_USER', 'root'); 
 define('DB_PASS', ''); 
 
-// Create a connection
+// Create a connection database
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // Check if the connection was successful
