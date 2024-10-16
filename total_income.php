@@ -1,8 +1,8 @@
 <?php
 // Database connection
 $servername = "localhost";
-$username = "root"; // use your database username
-$password = ""; // use your database password
+$username = "root"; 
+$password = ""; 
 $dbname = "income_db";
 
 // Create connection
