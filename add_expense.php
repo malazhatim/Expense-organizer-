@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+    // Get form data correct
     $amount = $_POST['amount'];
     $description = $_POST['description'];
     $date = $_POST['date'];
