@@ -5,7 +5,7 @@ We propose to build an intuitive and efficient Expense Tracker Web Application u
 
 Tech Stack:
 
-Frontend: HTML, CSS, JavaScript
+Frontend: HTML, CSS, JavaScript bootstrab 
 
 Backend: PHP
 
