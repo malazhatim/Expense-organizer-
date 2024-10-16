@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to get the sum of each income type
+// Query to get the sum of each income type groub by income_type
 $sql = "SELECT income_type, SUM(amount) AS total_amount FROM income GROUP BY income_type";
 $result = $conn->query($sql);
 
