@@ -150,7 +150,7 @@
 
     <!-- Footer -->
     <footer class="text-center">
-        <p class="mb-2">© 2024 My Website. All Rights Reserved.</p>
+        <p class="mb-2">© 2024 My Website. All Rights Reserved malaz and esraa.</p>
         <div>
             <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
             <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
