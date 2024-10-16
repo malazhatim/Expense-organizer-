@@ -1,7 +1,4 @@
-<?php
-            // Ensure the path to total_expenses.php is correct
-            include 'total_expenses.php'; // Correct this line if necessary
-            ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -78,9 +75,7 @@
             <input type="submit" value="Add Expense">
         </form>
 
-        <h2>Total Expenses</h2>
-        <div id="total-expenses">
-        </div>
+    
     </div>
 </body>
 </html>
