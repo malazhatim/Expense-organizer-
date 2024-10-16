@@ -3,9 +3,9 @@
 $servername = "localhost";
 $username = "root"; 
 $password = ""; 
-$dbname = "income_db"; // name of data base created in phpMyAdmin
+$dbname = "income_db"; // name of data base created 
 
-// Connection to database
+// Connection to database normal
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
