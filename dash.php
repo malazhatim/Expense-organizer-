@@ -89,7 +89,7 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1 class="display-4">Welcome to Income Page </h1>
+            <h1 class="display-4">Welcome to Expense-organizer </h1>
             <p class="lead">We offer the best services to help you manage your income </p>
             <a href="#" class="btn btn-primary btn-lg mt-3">Start</a>
         </div>
